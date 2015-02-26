@@ -11,10 +11,13 @@ class CompanyReviewsController < ApplicationController
       @company_review = CompanyReview.new(company_review_params)
       @company_review.company_id = @company.id
       @company_review.user_id = current_user.id
-      @company_review.save
-      redirect_to companies_path
+      if @company_review.save
+        redirect_to companies_path, notice: "The company review was added successfully."
+      else
+        render :new
+      end
     else
-      redirect_to login_path, notice: "Must be logged in to review a company"
+      redirect_to login_path, notice: "Must be logged in to review a company."
     end
   end
 
