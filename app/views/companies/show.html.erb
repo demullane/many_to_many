@@ -5,6 +5,28 @@
 Catch Phrase: <%= @company.catch_phrase %><br />
 Suffix: <%= @company.suffix %></p>
 
+<% if @company.company_reviews.length != 0 %>
+  <h4>Company Reviews</h4>
+  <table class = "table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @company.company_reviews.each do |r| %>
+      <tr>
+          <td><%= r.title %></td>
+          <td><%= r.description %></td>
+          <td><%= r.rating %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
 <% if @company.products.length != 0 && @company.products != nil %>
   <h4>Products</h4>
   <% @company.products.each do |p| %>
