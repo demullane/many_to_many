@@ -5,8 +5,8 @@
 Catch Phrase: <%= @company.catch_phrase %><br />
 Suffix: <%= @company.suffix %></p>
 
-<h4>Products</h4>
-<% if @company.products != nil %>
+<% if @company.products.length != 0 && @company.products != nil %>
+  <h4>Products</h4>
   <% @company.products.each do |p| %>
     <p><strong>Name: <%= link_to p.name, product_path(p) %></strong><br />
     Price: <%= p.price.round(2) %></p>
