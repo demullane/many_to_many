@@ -20,7 +20,7 @@ class ProductReviewsController < ApplicationController
 
   private
   def product_review_params
-    params.require(:product_review).permit(:title, :desciption, :rating)
+    params.require(:product_review).permit(:title, :description, :rating)
   end
 
 end

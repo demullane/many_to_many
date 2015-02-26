@@ -1,0 +1,40 @@
+<h2><%= @company.name %></h2>
+
+<h4>Company Info</h4>
+<p>Name: <%= @company.name %><br />
+Catch Phrase: <%= @company.catch_phrase %><br />
+Suffix: <%= @company.suffix %></p>
+
+<h4>Products</h4>
+<% if @company.products != nil %>
+  <% @company.products.each do |p| %>
+    <p><strong>Name: <%= link_to p.name, product_path(p) %></strong><br />
+    Price: <%= p.price.round(2) %></p>
+    <% if p.product_reviews.length != 0 %>
+      <table class = "table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% p.product_reviews.each do |r| %>
+          <tr>
+              <td><%= r.title %></td>
+              <td><%= r.description %></td>
+              <td><%= r.rating %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+
+
+<!--<%= link_to "Edit", edit_company_path %>-->
+<%= link_to "All Companies", companies_path %>

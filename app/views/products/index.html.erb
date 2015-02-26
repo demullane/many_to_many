@@ -1,4 +1,3 @@
-
 <div class='page-header'>
   <h1> Products</h1>
 </div>
@@ -13,16 +12,19 @@
       <th>Price</th>
       <th>Company</th>
       <th></th>
+      <th></th>
   </tr>
-      <tbody>
-        <% @products.each do |product| %>
-          <tr>
-              <td><%=product.name %> </td>
-              <td>$<%=product.price.round(2) %></td>
-              <td><%= product.company.name %></td>
-              <td><%= link_to "Review Product", new_product_product_review_path(product) %></td>
-
-         </tr>
-            <% end %>
-      </tbody>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+          <td><%=product.name %> </td>
+          <td>$<%=product.price.round(2) %></td>
+          <% if product.company != nil %>
+            <td><%= product.company.name %></td>
+          <% end %>
+          <td><%= link_to "Review Product", new_product_product_review_path(product) %></td>
+          <td><%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?'} %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
